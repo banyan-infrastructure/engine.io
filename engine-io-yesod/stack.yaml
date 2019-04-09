@@ -1,0 +1,8 @@
+resolver: lts-13.5
+
+
+packages:
+- .
+
+extra-deps:
+- engine-io-1.2.22@sha256:bfa78e589c57afcb804866ebc592a26b20bf0efaaddf3302408bb0fcc39e1625

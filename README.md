@@ -1,5 +1,6 @@
 engine.io
 =========
+This fork aims to provide stack support for lts-13.6
 
 This repository contains the following projects:
 

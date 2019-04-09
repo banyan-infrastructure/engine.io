@@ -19,10 +19,12 @@ import qualified Network.Wai as WAI
 import qualified Network.Wai.Handler.WebSockets as WaiWS
 import qualified Network.WebSockets as WS
 import Network.HTTP.Types.Status as St
+import Control.Monad.Trans.Control (MonadBaseControl)
+import Control.Monad.IO.Unlift
 
 --------------------------------------------------------------------------------
 -- | A drop in 'EIO.ServerAPI' that works in Yesod's 'Handler' monad.
-yesodAPI :: (YC.MonadHandler m, YC.MonadBaseControl IO m) => EIO.ServerAPI m
+yesodAPI :: (YC.MonadHandler m, MonadBaseControl IO m, MonadUnliftIO m) => EIO.ServerAPI m
 yesodAPI = EIO.ServerAPI
   { EIO.srvTerminateWithResponse = \code ct builder -> do
       let status = filter ((==) code . St.statusCode) [St.status100..St.status511]
